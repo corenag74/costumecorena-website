@@ -1,3 +1,15 @@
 {
-  "products": []
+  "products": [
+    {
+      "inStock": true,
+      "id": "lg00001",
+      "name": "teal v neck choker",
+      "price": 10,
+      "description": "Leather metallic teal color with dragon scale tooling with jeweled gold broach on front, snaps on side adjustable 3 sizes",
+      "images": [
+        "/images/uploads/telvnkdrgnscl-with-chrm-01.jpg",
+        "/images/uploads/telvnkdrgnscl-with-chrm-02.jpg"
+      ]
+    }
+  ]
 }
