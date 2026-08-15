@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded product photos get committed in the repo.
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+# Show a "publish" flow but changes go straight to the main branch (simple mode).
+publish_mode: simple
+
+collections:
+  - name: "products"
+    label: "Shop Products"
+    files:
+      - file: "data/products.json"
+        label: "Product Catalog"
+        name: "products"
+        description: "Add, edit, or remove products here. Each product needs at least a name, price, and one photo."
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.price}}"
+            fields:
+              - { label: "Product ID (no spaces, e.g. leather-armor-01)", name: "id", widget: "string", hint: "Used internally to keep track of this item. Lowercase, letters/numbers/hyphens only." }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price (USD)", name: "price", widget: "number", value_type: "float", min: 0, step: 0.01 }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Photos (first one is the cover photo)"
+                name: "images"
+                widget: "list"
+                field: { label: "Photo", name: "image", widget: "image" }
+              - { label: "In Stock / Available", name: "inStock", widget: "boolean", default: true }
+
+  - name: "settings"
+    label: "Store Settings"
+    files:
+      - file: "data/settings.json"
+        label: "Payment Settings"
+        name: "settings"
+        description: "Paste your PayPal Client ID here to turn on checkout buttons. Get one free at developer.paypal.com -> Apps & Credentials -> Create App. Leave blank and the shop page shows a 'Contact to Purchase' link instead."
+        fields:
+          - { label: "PayPal Client ID", name: "paypalClientId", widget: "string", required: false }
+          - { label: "Currency", name: "currency", widget: "select", options: ["USD"], default: "USD" }
