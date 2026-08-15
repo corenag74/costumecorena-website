@@ -76,32 +76,39 @@ just standard PayPal transaction fees on sales).
   Confirmed fixed: retried deploy published successfully, `/admin` login now
   working. **If this error reappears** (e.g. after a new commit from a different
   author identity), the fix is the same: Netlify → Team members → Git Contributors.
-- ⏳ **PayPal Client ID not yet set.** Blocked on Corena's PayPal Business account
-  verification (see below). Shop currently shows "Contact to Purchase" as a
-  result — functional, just not automated checkout yet.
-- ⏳ **Products not yet added.** `data/products.json` is intentionally empty — no
-  placeholder/fake products were seeded. ~289 raw product photos exist locally at
-  `D:\costumes\products\JPEG` (multiple angles per item, originally unlabeled);
-  Corena is renaming/organizing them before they get added through the dashboard.
+- ✅ **PayPal Client ID is live.** Business account verification cleared, Live app
+  created at developer.paypal.com, Client ID set in `/admin → Store Settings`.
+  Verified end-to-end: a real PayPal button renders on the live shop page using
+  this Client ID.
+- ✅ **First real product added and live**: "teal v neck choker" ($10), added
+  through `/admin` with photos uploaded via the dashboard's media picker to
+  `/images/uploads/`. Confirms the full pipeline works: dashboard → git commit →
+  Netlify deploy → live shop page with working checkout.
+- ⏳ **Remaining products**: ~289 raw product photos exist locally at
+  `D:\costumes\products\JPEG` (multiple angles per item, originally unlabeled).
+  Corena is resizing (target: ~1200-1600px longest side, JPEG ~80% quality) and
+  renaming/organizing them, then adding the rest of the catalog through the
+  dashboard at her own pace.
 
 ## Outstanding items / next steps
 
-1. **Finish photo renaming**, then add real products via `/admin` (name, price,
-   description per item).
+1. **Finish resizing/renaming the remaining photos**, then add the rest of the
+   real products via `/admin` (name, price, description per item) at whatever
+   pace works.
 2. **Send a real test email** to `pay@costumecorena.com` and/or
    `info@costumecorena.com` once the 4-6 hour propagation window has passed, to
    confirm the MX/SPF fix actually resolved delivery end-to-end.
-3. **PayPal verification**: Corena's PayPal account (`corenag@gmail.com`) needs to
-   finish Business-account verification before a Live Client ID can be generated at
-   developer.paypal.com → Apps & Credentials. Was stuck on an unconfirmed
-   `pay@costumecorena.com` business email tied to the (now-fixed) DNS/MX issue —
-   worth rechecking whether verification unblocks now that email is working.
-4. Once PayPal Client ID is in hand: paste into `/admin → Store Settings → Payment
-   Settings`, publish. No code changes or redeploy needed.
-5. **Optional later:** true Google Pay support needs a gateway with Google Pay
-   explicitly enabled (PayPal Business, once verified, or Stripe) — current PayPal
-   buttons already support card/bank/PayPal-balance checkout without a PayPal
-   account on the buyer's side.
+3. **Optional later:** true Google Pay support needs a gateway with Google Pay
+   explicitly enabled (now possible since PayPal Business is verified, or via
+   Stripe) — current PayPal buttons already support card/bank/PayPal-balance
+   checkout without a PayPal account on the buyer's side.
+
+## Build complete
+
+As of 2026-08-15, the core build is done and verified end-to-end: shop page,
+dashboard, and PayPal checkout are all live and working. Remaining work is just
+catalog content (photos/products) and the email delivery confirmation above —
+no further code or infrastructure changes expected.
 
 ## Key reference
 
