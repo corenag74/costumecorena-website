@@ -399,7 +399,7 @@ function renderBuyButtons(currency) {
           }]
         }),
         onApprove: (data, actions) => actions.order.capture().then(() => {
-          area.innerHTML = '<p style="color:var(--lime,#AAFF00);font-size:0.85rem;">✓ Payment received — thank you! You\\'ll get a confirmation email from PayPal.</p>';
+          area.innerHTML = '<p style="color:var(--lime,#AAFF00);font-size:0.85rem;">✓ Payment received — thank you! You will get a confirmation email from PayPal.</p>';
         }),
         onError: (err) => {
           console.error('PayPal error', err);
